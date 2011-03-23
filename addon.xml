@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon 	id="plugin.video.mlbtv" 
+		version="0.1" 
+		name="MLB.TV" 
+		provider-name="Boxee port">
+		
+	<requires> 
+		<import addon="xbmc.gui" version="2.11"/>
+		<import addon="xbmc.metadata" version="1.0"/>
+		<import addon="xbmc.python" version="1.0"/>
+	</requires>
+
+	<extension 	point="xbmc.python.script" library="default.py" id="plugin.video.mlbtv">
+		<provides>video</provides>
+	</extension>
+
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<minversion>29000</minversion>
+		<summary>Video, scores, and standings from MLB.TV</summary>
+		<description>WIP port of the Boxee MLB.TV app to XBMC</description>
+		<nofanart>true</nofanart>
+	</extension>
+</addon>

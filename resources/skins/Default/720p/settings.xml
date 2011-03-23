@@ -1,0 +1,951 @@
+<?xml version="1.0"?>
+<window type="window" id="14003">
+   <defaultcontrol always="true">121</defaultcontrol>
+   <allowoverlay>no</allowoverlay>
+
+   <controls>
+      <control type="group">
+         <include>Window_Fade_Animation</include>
+         <control type="image">
+            <visible>!Player.HasVideo</visible>
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-bg.png</texture>
+         </control>
+         <control type="videowindow">
+            <visible>Player.HasVideo</visible>
+            <width>1280</width>
+            <height>720</height>
+         </control>
+         <control type="image">
+            <visible>Player.HasVideo</visible>
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-bg.png</texture>
+            <colordiffuse>99FFFFFF</colordiffuse>
+         </control>
+         <control type="image">
+            <width>1280</width>
+            <height>727</height>
+            <texture>settings/mlb-settings.png</texture>
+         </control>
+         <control type="button" id="90">
+            <posy>18</posy>
+            <posx>1080</posx>
+            <width>141</width>
+            <height>41</height>
+            <onup>-</onup>
+            <ondown>120</ondown>
+            <onright>-</onright>
+            <onleft>-</onleft>
+            <label>Now Playing</label>
+            <font>font18b</font>
+            <align>center</align>
+            <aligny>top</aligny>
+            <textcolor>white</textcolor>
+            <textoffsety>9</textoffsety>
+            <texturefocus>buttons/mlb-login-on.png</texturefocus>
+            <texturenofocus>buttons/mlb-login.png</texturenofocus>
+            <visible>Player.HasMedia + !Player.Caching + !Window.IsVisible(DialogProgress.xml)</visible>
+            <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="true">Focus</animation>
+
+         </control>
+         <control type="label">
+            <posy>18</posy>
+            <posx>1050</posx>
+            <width>200</width>
+            <height>45</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>title30b</font>
+            <textcolor>30ffffff</textcolor>
+            <info>System.Time</info>
+            <visible>!Control.IsVisible(90)</visible>
+         </control>
+         <control type="label">
+            <posy>55</posy>
+            <posx>1050</posx>
+            <width>200</width>
+            <height>45</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>title30b</font>
+            <textcolor>30ffffff</textcolor>
+            <info>System.Time</info>
+            <visible>Control.IsVisible(90)</visible>
+         </control>
+         <control type="group" id="1000">
+            <control type="image">
+               <posy>24</posy>
+               <posx>26</posx>
+               <width>180</width>
+               <height>53</height>
+               <texture>mlb-badge.png</texture>
+               <aspectratio>keep</aspectratio>
+            </control>
+            <control type="label">
+               <posx>24</posx>
+               <posy>76</posy>
+               <width>182</width>
+               <height>20</height>
+               <align>center</align>
+               <aligny>center</aligny>
+               <font>font18b</font>
+               <textcolor>white</textcolor>
+               <info>app.String(username)</info>
+               <visible>!IsEmpty(app.String(username)) | !IsEmpty(app.String(password))</visible>
+            </control>
+            <control type="button" id="1004">
+               <posx>564</posx>
+               <posy>681</posy>
+               <width>152</width>
+               <height>39</height>
+               <onup>120</onup>
+               <onleft>1007</onleft>
+               <onright>1005</onright>
+               <onleft>-</onleft>
+               <visible>App.HasSetting(14000)</visible>
+               <texturenofocus>buttons/mlb-today3.png</texturenofocus>
+               <texturefocus>buttons/mlb-today-on3.png</texturefocus>
+               
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+            </control>
+            <control type="button" id="1005">
+               <posx>564</posx>
+               <posy>681</posy>
+               <width>152</width>
+               <height>39</height>
+               <onup>120</onup>
+               <onleft>1007</onleft>
+               <onright>1006</onright>
+               <visible>App.HasSetting(14001)</visible>
+               <texturenofocus>buttons/mlb-calendar2.png</texturenofocus>
+               <texturefocus>buttons/mlb-calendar-on2.png</texturefocus>
+
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+            </control>
+            <control type="button" id="1006">
+               <posx>564</posx>
+               <posy>681</posy>
+               <width>152</width>
+               <height>39</height>
+               <onup>120</onup>
+               <onleft>1007</onleft>
+               <onright>-</onright>
+               <visible>App.HasSetting(14002)</visible>
+               <texturenofocus>buttons/mlb-standings2.png</texturenofocus>
+               <texturefocus>buttons/mlb-standings-on2.png</texturefocus>
+               
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+            </control>
+            <control type="button" id="1007">
+               <posy>610</posy>
+               <posx>70</posx>
+               <width>50</width>
+               <height>48</height>
+               <onup>120</onup>
+               <ondown>1004</ondown>
+               <onright>1004</onright>
+               <onleft>-</onleft>
+               <label>Home</label>
+               <font>font23</font>
+               <align>center</align>
+               <aligny>top</aligny>
+               <textcolor>white</textcolor>
+               <textoffsety>48</textoffsety>
+               <visible>!App.HasSetting(14000)</visible>
+               <texturefocus>settings/mlb-home-btn-on.png</texturefocus>
+               <texturenofocus>settings/mlb-home-btn.png</texturenofocus>
+               
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+            </control>
+         </control>
+         <control type="grouplist">
+            <posy>172</posy>
+            <posx>540</posx>
+            <control type="label">
+               <width>200</width>
+               <height>22</height>
+               <font>title28b</font>
+               <align>center</align>
+               <textcolor>white</textcolor>
+               <label>Settings</label>
+            </control>
+         </control>
+         <control type="grouplist" id="120">
+            <posx>316</posx>
+            <posy>225</posy>
+            <width>647</width>
+            <height>340</height>
+            <onup>90</onup>
+            <ondown>1000</ondown>
+            <itemgap>2</itemgap>
+            <orientation>vertical</orientation>
+            <control type="button" id="121">
+               <width>647</width>
+               <height>65</height>
+               <label>Set Favorite Team(s)</label>
+               <font>font23b</font>
+               <align>left</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+               <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+               <textoffsetx>15</textoffsetx>
+               
+            </control>
+            <control type="button" id="122">
+               <width>647</width>
+               <height>65</height>
+               <label>Hide / Reveal Scores</label>
+               <font>font23b</font>
+               <align>left</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+               <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+               <textoffsetx>15</textoffsetx>
+               
+            </control>
+            <control type="button" id="123">
+               <width>647</width>
+               <height>65</height>
+               <label>Select Default Stream Quality</label>
+               <font>font23b</font>
+               <align>left</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+               <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+               <textoffsetx>15</textoffsetx>
+               
+            </control>
+            <!--                                            <control type="button" id="124">-->
+            <!--                                                     <width>647</width>-->
+            <!--                                                     <height>65</height>-->
+            <!--                                                     <label>Change/Update Account Login</label>-->
+            <!--                                                     <font>font23b</font>-->
+            <!--                                                     <align>left</align>-->
+            <!--                                                     <aligny>center</aligny>-->
+            <!--                                                     <textcolor>white</textcolor>-->
+            <!--                                                     <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>-->
+            <!--                                                     <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>-->
+            <!--                                                     <textoffsetx>15</textoffsetx>-->
+            <!--                                                     <onclick lang="python">-->
+            <!--                                                                    <![CDATA[-->
+            <!--import mlb-->
+            <!--mlb.userUpdateCredentials()-->
+            <!--]]>-->
+            <!--                                                     </onclick>-->
+            <!--                                            </control>-->
+            <!--                                            <control type="button" id="125">-->
+            <!--                                                     <width>647</width>-->
+            <!--                                                     <height>65</height>-->
+            <!--                                                     <label>Sign Out</label>-->
+            <!--                                                     <font>font23b</font>-->
+            <!--                                                     <align>left</align>-->
+            <!--                                                     <aligny>center</aligny>-->
+            <!--                                                     <textcolor>white</textcolor>-->
+            <!--                                                     <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>-->
+            <!--                                                     <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>-->
+            <!--                                                     <textoffsetx>15</textoffsetx>-->
+            <!--                                                     <onclick lang="python">-->
+            <!--                                                                    <![CDATA[-->
+            <!--import mlb-->
+            <!--mlb.userLogout()-->
+            <!--]]>-->
+            <!--                                                     </onclick>-->
+            <!--                                            </control>-->
+         </control>
+      </control>
+      <control type="group" id="4000">
+         <visible>false</visible>
+         <width>1280</width>
+         <height>720</height>
+         <control type="image">
+            <posy>-2</posy>
+            <width>1280</width>
+            <height>722</height>
+            <texture>mlb-shade-overlay.png</texture>
+         </control>
+         <control type="group">
+            <posy>150</posy>
+            <posx>420</posx>
+            <control type="image">
+               <width>667</width>
+               <height>420</height>
+               <texture>settings/mlb-settings-popup-bg.png</texture>
+            </control>
+         </control>
+      </control>
+      <control type="group" id="5000">
+         <visible>false</visible>
+         <width>1280</width>
+         <height>720</height>
+         <control type="image">
+            <posy>-2</posy>
+            <width>1280</width>
+            <height>722</height>
+            <texture>mlb-shade-overlay.png</texture>
+         </control>
+         <control type="group">
+            <posy>150</posy>
+            <posx>420</posx>
+            <animation effect="zoom" end="100" center="auto" time="150" condition="Control.IsVisible(5000)">Conditional</animation>
+            <animation effect="zoom" end="0" center="auto" time="150" condition="!Control.IsVisible(5000)">Conditional</animation>
+            <control type="image">
+               <width>667</width>
+               <height>420</height>
+               <texture>settings/mlb-settings-popup-bg.png</texture>
+            </control>
+            <control type="label">
+               <posx></posx>
+               <posy>15</posy>
+               <width>667</width>
+               <height>35</height>
+               <align>center</align>
+               <aligny>center</aligny>
+               <font>title28b</font>
+               <textcolor>white</textcolor>
+               <label>Hide / Reveal Scores</label>
+            </control>
+            <control type="button" id="5060">
+               <posy>358</posy>
+               <posx>10</posx>
+               <width>647</width>
+               <height>52</height>
+               <onup>5052</onup>
+               <ondown>-</ondown>
+               <onright>-</onright>
+               <onleft>-</onleft>
+               <label>Cancel</label>
+               <font>title28b</font>
+               <align>center</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <texturefocus>mlb-selected.png</texturefocus>
+               <texturenofocus>-</texturenofocus>
+               
+            </control>
+            <control type="grouplist" id="5050">
+               <posx>12</posx>
+               <posy>78</posy>
+               <width>643</width>
+               <height>260</height>
+               <onup>-</onup>
+               <ondown>5060</ondown>
+               <itemgap>2</itemgap>
+               <orientation>vertical</orientation>
+               <control type="togglebutton" id="5051">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Show All Scores</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>!App.HasSetting(hide_scores)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(hide_scores)</onclick>
+                  
+               </control>
+               <control type="togglebutton" id="5052">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Hide All Scores</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(hide_scores)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.SetBool(hide_scores, true)</onclick>
+                  
+               </control>
+            </control>
+         </control>
+      </control>
+      <control type="group" id="5600">
+         <visible>false</visible>
+         <width>1280</width>
+         <height>720</height>
+         <control type="image">
+            <posy>-2</posy>
+            <width>1280</width>
+            <height>722</height>
+            <texture>mlb-shade-overlay.png</texture>
+         </control>
+         <control type="group">
+            <posy>150</posy>
+            <posx>420</posx>
+            <animation effect="zoom" end="100" center="auto" time="150" condition="Control.IsVisible(5600)">Conditional</animation>
+            <animation effect="zoom" end="0" center="auto" time="150" condition="!Control.IsVisible(5600)">Conditional</animation>
+            <control type="image">
+               <width>667</width>
+               <height>420</height>
+               <texture>settings/mlb-settings-popup-bg.png</texture>
+            </control>
+            <control type="label">
+               <posx></posx>
+               <posy>15</posy>
+               <width>667</width>
+               <height>35</height>
+               <align>center</align>
+               <aligny>center</aligny>
+               <font>title28b</font>
+               <textcolor>white</textcolor>
+               <label>Default Video Quality</label>
+            </control>
+            <control type="button" id="5660">
+               <posy>358</posy>
+               <posx>10</posx>
+               <width>647</width>
+               <height>52</height>
+               <onup>5653</onup>
+               <ondown>-</ondown>
+               <onright>-</onright>
+               <onleft>-</onleft>
+               <label>Cancel</label>
+               <font>title28b</font>
+               <align>center</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <texturefocus>mlb-selected.png</texturefocus>
+               <texturenofocus>-</texturenofocus>
+               
+            </control>
+            <control type="grouplist" id="5650">
+               <posx>12</posx>
+               <posy>78</posy>
+               <width>643</width>
+               <height>260</height>
+               <onup>-</onup>
+               <ondown>5660</ondown>
+               <itemgap>2</itemgap>
+               <orientation>vertical</orientation>
+               <control type="togglebutton" id="5651">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>High Quality Streams</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(high_quality)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(ask_quality)</onclick>
+                  <onclick>App.Reset(default_quality)</onclick>
+                  <onclick>App.SetBool(high_quality, true)</onclick>
+                  
+               </control>
+               <control type="togglebutton" id="5652">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Default Quality Streams</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(default_quality)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(ask_quality)</onclick>
+                  <onclick>App.Reset(high_quality)</onclick>
+                  <onclick>App.SetBool(default_quality, true)</onclick>
+                  
+               </control>
+               <control type="togglebutton" id="5653">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Ask Every Time</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(ask_quality)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(high_quality)</onclick>
+                  <onclick>App.Reset(default_quality)</onclick>
+                  <onclick>App.SetBool(ask_quality, true)</onclick>
+                  
+               </control>
+            </control>
+         </control>
+      </control>
+      <control type="group" id="3000">
+         <visible>false</visible>
+         <control type="image">
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-shade-overlay.png</texture>
+         </control>
+         <control type="group">
+            <animation effect="zoom" end="100" center="auto" time="150" condition="Control.IsVisible(3000)">Conditional</animation>
+            <animation effect="zoom" end="0" center="auto" time="150" condition="!Control.IsVisible(3000)">Conditional</animation>
+            <control type="image">
+               <width>1280</width>
+               <height>720</height>
+               <texture>settings/mlb-team-selection-bg.png</texture>
+            </control>
+            <control type="label">
+               <posx>495</posx>
+               <posy>148</posy>
+               <width>280</width>
+               <align>center</align>
+               <aligny>center</aligny>
+               <font>title26b</font>
+               <textcolor>white</textcolor>
+               <label>Favorite Teams</label>
+            </control>
+            <control type="group">
+               <posy>206</posy>
+               <posx>480</posx>
+               <control type="label">
+                  <width>250</width>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <font>title26b</font>
+                  <textcolor>white</textcolor>
+                  <label>West</label>
+               </control>
+               <control type="label">
+                  <posx>230</posx>
+                  <width>250</width>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <font>title26b</font>
+                  <textcolor>white</textcolor>
+                  <label>Central</label>
+               </control>
+               <control type="label">
+                  <posx>495</posx>
+                  <width>250</width>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <font>title26b</font>
+                  <textcolor>white</textcolor>
+                  <label>East</label>
+               </control>
+            </control>
+            <control type="panel" id="200">
+               <posy>250</posy>
+               <posx>411</posx>
+               <width>222</width>
+               <height>170</height>
+               <onup>-</onup>
+               <onleft>-</onleft>
+               <onright>202</onright>
+               <ondown>203</ondown>
+               <pagecontrol>30</pagecontrol>
+               <scrolltime>0</scrolltime>
+               <preloaditems>1</preloaditems>
+               <orientation>vertical</orientation>
+               <itemlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="image">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <width>54</width>
+                     <height>54</height>
+                     <texture>$INFO[Listitem.Thumb]</texture>
+                  </control>
+               </itemlayout>
+               <focusedlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="group">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <control type="image">
+                        <posx>-3</posx>
+                        <posy>-3</posy>
+                        <width>60</width>
+                        <height>60</height>
+                        <texture>settings/mlb-team-select-on.png</texture>
+                        <visible>Container(200).HasFocus</visible>
+                     </control>
+                     <control type="image">
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </control>
+               </focusedlayout>
+               <content type="url" url="">
+                  
+               </content>
+            </control>
+            <control type="panel" id="202">
+               <posy>250</posy>
+               <posx>655</posx>
+               <width>222</width>
+               <height>170</height>
+               <onup>-</onup>
+               <onleft>200</onleft>
+               <onright>201</onright>
+               <ondown>205</ondown>
+               <pagecontrol>30</pagecontrol>
+               <scrolltime>0</scrolltime>
+               <preloaditems>1</preloaditems>
+               <orientation>vertical</orientation>
+               <itemlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="image">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <width>54</width>
+                     <height>54</height>
+                     <texture>$INFO[Listitem.Thumb]</texture>
+                  </control>
+               </itemlayout>
+               <focusedlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="group">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <control type="image">
+                        <posx>-3</posx>
+                        <posy>-3</posy>
+                        <width>60</width>
+                        <height>60</height>
+                        <texture>settings/mlb-team-select-on.png</texture>
+                        <visible>Container(202).HasFocus</visible>
+                     </control>
+                     <control type="image">
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </control>
+               </focusedlayout>
+               <content type="url">
+                  
+               </content>
+            </control>
+            <control type="panel" id="201">
+               <posy>250</posy>
+               <posx>898</posx>
+               <width>222</width>
+               <height>170</height>
+               <onup>-</onup>
+               <onleft>202</onleft>
+               <onright>-</onright>
+               <ondown>204</ondown>
+               <pagecontrol>30</pagecontrol>
+               <scrolltime>0</scrolltime>
+               <preloaditems>1</preloaditems>
+               <orientation>vertical</orientation>
+               <itemlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="image">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <width>54</width>
+                     <height>54</height>
+                     <texture>$INFO[Listitem.Thumb]</texture>
+                  </control>
+               </itemlayout>
+               <focusedlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="group">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <control type="image">
+                        <posx>-3</posx>
+                        <posy>-3</posy>
+                        <width>60</width>
+                        <height>60</height>
+                        <texture>settings/mlb-team-select-on.png</texture>
+                        <visible>Container(201).HasFocus</visible>
+                     </control>
+                     <control type="image">
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </control>
+               </focusedlayout>
+               <content type="url">
+
+               </content>
+            </control>
+            <control type="group" id="3200">
+               <control type="panel" id="203">
+                  <posy>445</posy>
+                  <posx>411</posx>
+                  <width>222</width>
+                  <height>170</height>
+                  <onup>200</onup>
+                  <onleft>-</onleft>
+                  <onright>205</onright>
+                  <ondown>3100</ondown>
+                  <pagecontrol>30</pagecontrol>
+                  <scrolltime>0</scrolltime>
+                  <preloaditems>1</preloaditems>
+                  <orientation>vertical</orientation>
+                  <itemlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="image">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </itemlayout>
+                  <focusedlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="group">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <control type="image">
+                           <posx>-3</posx>
+                           <posy>-3</posy>
+                           <width>60</width>
+                           <height>60</height>
+                           <texture>settings/mlb-team-select-on.png</texture>
+                           <visible>Container(203).HasFocus</visible>
+                        </control>
+                        <control type="image">
+                           <width>54</width>
+                           <height>54</height>
+                           <texture>$INFO[Listitem.Thumb]</texture>
+                        </control>
+                     </control>
+                  </focusedlayout>
+                  <content type="url">
+
+                  </content>
+               </control>
+               <control type="panel" id="205">
+                  <posy>445</posy>
+                  <posx>655</posx>
+                  <width>222</width>
+                  <height>170</height>
+                  <onup>202</onup>
+                  <onleft>203</onleft>
+                  <onright>204</onright>
+                  <ondown>3100</ondown>
+                  <pagecontrol>30</pagecontrol>
+                  <scrolltime>0</scrolltime>
+                  <preloaditems>1</preloaditems>
+                  <orientation>vertical</orientation>
+                  <itemlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="image">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </itemlayout>
+                  <focusedlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="group">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <control type="image">
+                           <posx>-3</posx>
+                           <posy>-3</posy>
+                           <width>60</width>
+                           <height>60</height>
+                           <texture>settings/mlb-team-select-on.png</texture>
+                           <visible>Container(205).HasFocus</visible>
+                        </control>
+                        <control type="image">
+                           <width>54</width>
+                           <height>54</height>
+                           <texture>$INFO[Listitem.Thumb]</texture>
+                        </control>
+                     </control>
+                  </focusedlayout>
+                  <content type="url">
+
+                  </content>
+               </control>
+               <control type="panel" id="204">
+                  <posy>445</posy>
+                  <posx>898</posx>
+                  <width>222</width>
+                  <height>170</height>
+                  <onup>201</onup>
+                  <onleft>205</onleft>
+                  <onright>-</onright>
+                  <ondown>3100</ondown>
+                  <pagecontrol>30</pagecontrol>
+                  <scrolltime>0</scrolltime>
+                  <preloaditems>1</preloaditems>
+                  <orientation>vertical</orientation>
+                  <itemlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="image">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </itemlayout>
+                  <focusedlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="group">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <control type="image">
+                           <posx>-3</posx>
+                           <posy>-3</posy>
+                           <width>60</width>
+                           <height>60</height>
+                           <texture>settings/mlb-team-select-on.png</texture>
+                           <visible>Container(204).HasFocus</visible>
+                        </control>
+                        <control type="image">
+                           <width>54</width>
+                           <height>54</height>
+                           <texture>$INFO[Listitem.Thumb]</texture>
+                        </control>
+                     </control>
+                  </focusedlayout>
+                  <content type="url">
+
+                  </content>
+               </control>
+            </control>
+            <control type="grouplist" id="3100">
+               <posy>627</posy>
+               <posx>760</posx>
+               <onup>3200</onup>
+               <itemgap>4</itemgap>
+               <orientation>horizontal</orientation>
+               <control type="button" id="3101">
+                  <width>119</width>
+                  <height>39</height>
+                  <label>Save</label>
+                  <font>title22b</font>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <texturefocus>mlb-selected.png</texturefocus>
+                  <texturenofocus>-</texturenofocus>
+
+               </control>
+               <control type="button" id="3102">
+                  <width>119</width>
+                  <height>39</height>
+                  <label>Cancel</label>
+                  <font>title22b</font>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <texturefocus>mlb-selected.png</texturefocus>
+                  <texturenofocus>-</texturenofocus>
+
+               </control>
+            </control>
+         </control>
+      </control>
+   </controls>
+</window>

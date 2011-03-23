@@ -1,0 +1,868 @@
+<?xml version="1.0"?>
+<window type="window" id="14001">
+   <defaultcontrol always="true">121</defaultcontrol>
+   <allowoverlay>no</allowoverlay>
+
+   <controls>
+      <include>Window_Fade_Animation</include>
+      <control type="group">
+         <control type="image">
+            <visible>!Player.HasVideo</visible>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-bg.png</texture>
+         </control>
+         <control type="videowindow">
+            <visible>Player.HasVideo</visible>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>1280</width>
+            <height>720</height>
+         </control>
+         <control type="image">
+            <visible>Player.HasVideo</visible>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-bg.png</texture>
+            <colordiffuse>99FFFFFF</colordiffuse>
+         </control>
+         <control type="image">
+            <posx>5</posx>
+            <width>1280</width>
+            <height>720</height>
+            <texture>calendar/mlb-calendar.png</texture>
+         </control>
+         <control type="group" id="100">
+            <posy>239</posy>
+            <posx>183</posx>
+            <control type="button" id="91">
+               <posy>1</posy>
+               <posx></posx>
+               <width>24</width>
+               <height>25</height>
+               <onup>1001</onup>
+               <ondown>121</ondown>
+               <onright>92</onright>
+               <onleft>-</onleft>
+               <texturefocus flipx="true">calendar/mlb-calendar-nav-on.png</texturefocus>
+               <texturenofocus flipx="true">calendar/mlb-calendar-nav.png</texturenofocus>
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+               
+            </control>
+            <control type="label" id="101">
+               <posx>31</posx>
+               <font>font21</font>
+               <label></label>
+               <height>26</height>
+               <align>left</align>
+               <visible>!Control.HasFocus(91)</visible>
+            </control>
+            <control type="label">
+               <posx>31</posx>
+               <height>26</height>
+               <align>left</align>
+               <font>font21</font>
+               <textcolor>ffc4982e</textcolor>
+               <info>Control.GetLabel(101)</info>
+               <visible>Control.HasFocus(91)</visible>
+            </control>
+            <control type="label" id="102">
+               <posy>-2</posy>
+               <posx>450</posx>
+               <font>font23b</font>
+               <label></label>
+               <height>26</height>
+               <align>center</align>
+            </control>
+            <control type="label" id="103">
+               <posx>874</posx>
+               <font>font21</font>
+               <label></label>
+               <width>300</width>
+               <height>26</height>
+               <align>right</align>
+               <visible>!Control.HasFocus(92)</visible>
+            </control>
+            <control type="label">
+               <posx>874</posx>
+               <font>font21</font>
+               <info>Control.GetLabel(103)</info>
+               <width>300</width>
+               <height>26</height>
+               <align>right</align>
+               <textcolor>ffc4982e</textcolor>
+               <visible>Control.HasFocus(92)</visible>
+            </control>
+            <control type="button" id="92">
+               <posy>1</posy>
+               <posx>880</posx>
+               <width>24</width>
+               <height>25</height>
+               <onup>1001</onup>
+               <ondown>121</ondown>
+               <onright>1003</onright>
+               <onleft>91</onleft>
+               <texturefocus>calendar/mlb-calendar-nav-on.png</texturefocus>
+               <texturenofocus>calendar/mlb-calendar-nav.png</texturenofocus>
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+               
+            </control>
+         </control>
+      </control>
+      <control type="group" id="1000">
+         <control type="image">
+            <posy>24</posy>
+            <posx>26</posx>
+            <width>180</width>
+            <height>53</height>
+            <texture>mlb-badge.png</texture>
+            <aspectratio>keep</aspectratio>
+         </control>
+         <control type="label">
+            <posx>24</posx>
+            <posy>76</posy>
+            <width>182</width>
+            <height>20</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font18b</font>
+            <textcolor>white</textcolor>
+            <info>app.String(username)</info>
+            <visible>!IsEmpty(app.String(username)) | !IsEmpty(app.String(password))</visible>
+         </control>
+         <control type="button" id="90">
+            <posy>18</posy>
+            <posx>1080</posx>
+            <width>141</width>
+            <height>41</height>
+            <onup>-</onup>
+            <ondown>1003</ondown>
+            <onright>-</onright>
+            <onleft>1001</onleft>
+            <label>Now Playing</label>
+            <font>font18b</font>
+            <align>center</align>
+            <aligny>top</aligny>
+            <textcolor>white</textcolor>
+            <textoffsety>9</textoffsety>
+            <texturefocus>buttons/mlb-login-on.png</texturefocus>
+            <texturenofocus>buttons/mlb-login.png</texturenofocus>
+            <visible>Player.HasMedia + !Player.Caching + !Window.IsVisible(DialogProgress.xml)</visible>
+            <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="true">Focus</animation>
+          
+         </control>
+         <control type="label">
+            <posy>18</posy>
+            <posx>1050</posx>
+            <width>200</width>
+            <height>45</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>title30b</font>
+            <textcolor>30ffffff</textcolor>
+            <info>System.Time</info>
+            <visible>!Control.IsVisible(90)</visible>
+         </control>
+         <control type="label">
+            <posy>55</posy>
+            <posx>1050</posx>
+            <width>200</width>
+            <height>45</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>title30b</font>
+            <textcolor>30ffffff</textcolor>
+            <info>System.Time</info>
+            <visible>Control.IsVisible(90)</visible>
+         </control>
+         <control type="button" id="1001">
+            <posy>0</posy>
+            <posx>564</posx>
+            <width>152</width>
+            <height>38</height>
+            <ondown>100</ondown>
+            <onright>90</onright>
+            <onleft>-</onleft>
+            <texturenofocus>buttons/mlb-settings.png</texturenofocus>
+            <texturefocus>buttons/mlb-settings-on.png</texturefocus>
+            <onclick>App.Reset(14000)</onclick>
+            <onclick>App.Reset(14002)</onclick>
+            <onclick>App.SetBool(14001,false)</onclick>
+            
+            <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+         </control>
+         <control type="button" id="1003">
+            <posx>1241</posx>
+            <posy>284</posy>
+            <width>39</width>
+            <height>152</height>
+            <onup>90</onup>
+            <onleft>121</onleft>
+            <texturenofocus>buttons/mlb-today.png</texturenofocus>
+            <texturefocus>buttons/mlb-today-on.png</texturefocus>
+            
+            <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+         </control>
+      </control>
+      <control type="panel" id="121">
+         <posy>314</posy>
+         <posx>171</posx>
+         <width>980</width>
+         <height>375</height>
+         <onup>100</onup>
+         <onleft>-</onleft>
+         <onright>1003</onright>
+         <ondown>-</ondown>
+         <scrolltime>200</scrolltime>
+         <pagecontrol>60</pagecontrol>
+         <orientation>vertical</orientation>
+         <preloaditems>1</preloaditems>
+         <itemlayout width="133" height="75">
+            <control type="image">
+               <width>130</width>
+               <height>73</height>
+               <texture>calendar/mlb-calendar-current.png</texture>
+               <visible>!IsEmpty(Listitem.property(custom:today))</visible>
+            </control>
+            <control type="image">
+               <width>130</width>
+               <height>73</height>
+               <texture>calendar/mlb-calendar-noday.png</texture>
+               <visible>IsEmpty(Listitem.property(custom:display))</visible>
+            </control>
+            <control type="label">
+               <posx>65</posx>
+               <posy>2</posy>
+               <width>130</width>
+               <height>30</height>
+               <font>font28b</font>
+               <align>center</align>
+               <shadowcolor>grey</shadowcolor>
+               <textcolor>white</textcolor>
+               <info>Listitem.Label</info>
+            </control>
+            <control type="label">
+               <posx>65</posx>
+               <posy>40</posy>
+               <width>130</width>
+               <height>30</height>
+               <font>font18b</font>
+               <align>center</align>
+               <textcolor>white</textcolor>
+               <info>Listitem.property(description)</info>
+               <visible>!IsEmpty(Listitem.property(description))</visible>
+            </control>
+         </itemlayout>
+         <focusedlayout width="133" height="75">
+            <control type="image">
+               <width>130</width>
+               <height>73</height>
+               <texture>calendar/mlb-calendar-current.png</texture>
+               <visible>!IsEmpty(Listitem.property(custom:today))</visible>
+            </control>
+            <control type="image">
+               <width>130</width>
+               <height>73</height>
+               <texture>calendar/mlb-calendar-selected.png</texture>
+            </control>
+            <control type="image">
+               <width>130</width>
+               <height>73</height>
+               <texture>calendar/mlb-calendar-noday.png</texture>
+               <visible>IsEmpty(Listitem.property(custom:display))</visible>
+            </control>
+            <control type="label">
+               <posx>65</posx>
+               <posy>2</posy>
+               <width>130</width>
+               <height>30</height>
+               <font>font28b</font>
+               <align>center</align>
+               <shadowcolor>grey</shadowcolor>
+               <textcolor>white</textcolor>
+               <info>Listitem.Label</info>
+            </control>
+            <control type="label">
+               <posx>65</posx>
+               <posy>40</posy>
+               <width>130</width>
+               <height>30</height>
+               <font>font18b</font>
+               <align>center</align>
+               <textcolor>white</textcolor>
+               <info>Listitem.property(description)</info>
+               <visible>!IsEmpty(Listitem.property(description))</visible>
+            </control>
+         </focusedlayout>
+         <content type="url" url="rss://dir.boxee.tv/apps/mlb/feed/calendar">
+           
+         </content>
+      </control>
+      <control type="group" id="4000">
+         <visible>false</visible>
+         <width>1280</width>
+         <height>720</height>
+         <control type="image">
+            <posy>-2</posy>
+            <width>1280</width>
+            <height>722</height>
+            <texture>mlb-shade-overlay.png</texture>
+         </control>
+         <control type="group">
+            <posy>6</posy>
+            <posx>-15</posx>
+            <animation effect="zoom" end="100" center="auto" time="100" condition="Control.IsVisible(4000)">Conditional</animation>
+            <animation effect="zoom" end="0" center="auto" time="100" condition="!Control.IsVisible(4000)">Conditional</animation>
+            <control type="image">
+               <width>1310</width>
+               <height>703</height>
+               <texture>calendar/mlb-calendar-popup-bg.png</texture>
+            </control>
+            <control type="group">
+               <posx>438</posx>
+               <posy>145</posy>
+               <control type="label" id="4001">
+                  <posy>11</posy>
+                  <width>435</width>
+                  <height>30</height>
+                  <align>center</align>
+                  <font>font23b</font>
+                  <textcolor>white</textcolor>
+                  <info>container(4002).listitem.property(custom:game-date)</info>
+               </control>
+               <control type="list" id="4002">
+                  <posx>9</posx>
+                  <posy>50</posy>
+                  <width>417</width>
+                  <height>317</height>
+                  <pagecontrol></pagecontrol>
+                  <scrolltime>200</scrolltime>
+                  <preloaditems>2</preloaditems>
+                  <orientation>vertical</orientation>
+                  <itemlayout width="417" height="64">
+                     <control type="image">
+                        <width>417</width>
+                        <height>64</height>
+                        <texture>calendar/mlb-calendar-popup-listitem.png</texture>
+                     </control>
+                     <control type="group">
+                        <posy>12</posy>
+                        <posx>10</posx>
+                        <control type="largeimage">
+                           <posy>5</posy>
+                           <width>30</width>
+                           <height>30</height>
+                           <aspectratio>keep</aspectratio>
+                           <texture>http://mlb.mlb.com/images/logos/200x200/200x200_$INFO[ListItem.Property(custom:away-name-abbrev)].png</texture>
+                        </control>
+                        <control type="label">
+                           <posx>33</posx>
+                           <posy>7</posy>
+                           <width>80</width>
+                           <height>30</height>
+                           <align>left</align>
+                           <aligny>top</aligny>
+                           <font>font21</font>
+                           <textcolor>white</textcolor>
+                           <label>[B]$INFO[ListItem.Property(custom:away-name-abbrev)][/B]</label>
+                        </control>
+                        <control type="image">
+                           <posx>82</posx>
+                           <posy>1</posy>
+                           <width>16</width>
+                           <height>16</height>
+                           <texture>mlb-star.png</texture>
+                           <aspectratio>keep</aspectratio>
+                           <visible>!IsEmpty(Listitem.property(custom:away-team-fav))</visible>
+                        </control>
+                        <control type="group">
+                           <visible>!App.HasSetting(hide_scores)</visible>
+                           <control type="label">
+                              <posx>127</posx>
+                              <posy>5</posy>
+                              <width>30</width>
+                              <height>26</height>
+                              <align>center</align>
+                              <aligny>top</aligny>
+                              <font>font23b</font>
+                              <textcolor>white</textcolor>
+                              <info>ListItem.Property(custom:away-score)</info>
+                              <visible>!IsEmpty(Listitem.property(custom:away-score)) + !IsEmpty(Listitem.property(custom:show-score))</visible>
+                           </control>
+                           <control type="label">
+                              <posx>127</posx>
+                              <posy>5</posy>
+                              <width>30</width>
+                              <height>26</height>
+                              <align>center</align>
+                              <aligny>top</aligny>
+                              <font>font23b</font>
+                              <textcolor>white</textcolor>
+                              <label>12310</label>
+                              <visible>IsEmpty(Listitem.property(custom:away-score)) + !IsEmpty(Listitem.property(custom:show-score))</visible>
+                           </control>
+                           <control type="label">
+                              <posx>127</posx>
+                              <posy>5</posy>
+                              <width>30</width>
+                              <height>26</height>
+                              <align>center</align>
+                              <aligny>top</aligny>
+                              <font>font23b</font>
+                              <textcolor>white</textcolor>
+                              <label>&#8211;</label>
+                              <visible>IsEmpty(Listitem.property(custom:show-score))</visible>
+                           </control>
+                        </control>
+                        <control type="group">
+                           <posx>167</posx>
+                           <control type="largeimage">
+                              <posy>5</posy>
+                              <width>30</width>
+                              <height>30</height>
+                              <aspectratio>keep</aspectratio>
+                              <texture>http://mlb.mlb.com/images/logos/200x200/200x200_$INFO[ListItem.Property(custom:home-name-abbrev)].png</texture>
+                           </control>
+                           <control type="label">
+                              <posx>33</posx>
+                              <posy>7</posy>
+                              <width>80</width>
+                              <height>30</height>
+                              <align>left</align>
+                              <aligny>top</aligny>
+                              <font>font21</font>
+                              <textcolor>white</textcolor>
+                              <label>[B]$INFO[ListItem.Property(custom:home-name-abbrev)][/B]</label>
+                           </control>
+                           <control type="image">
+                              <posx>82</posx>
+                              <posy>1</posy>
+                              <width>16</width>
+                              <height>16</height>
+                              <texture>mlb-star.png</texture>
+                              <aspectratio>keep</aspectratio>
+                              <visible>!IsEmpty(Listitem.property(custom:home-team-fav))</visible>
+                           </control>
+                           <control type="group">
+                              <posx>127</posx>
+                              <visible>!App.HasSetting(hide_scores)</visible>
+                              <control type="label">
+                                 <!--<posx>127</posx>-->
+                                 <posy>5</posy>
+                                 <width>30</width>
+                                 <height>26</height>
+                                 <align>center</align>
+                                 <aligny>top</aligny>
+                                 <font>font23b</font>
+                                 <textcolor>white</textcolor>
+                                 <info>ListItem.Property(custom:home-score)</info>
+                                 <visible>!IsEmpty(Listitem.property(custom:home-score)) + !IsEmpty(Listitem.property(custom:show-score))</visible>
+                              </control>
+                              <control type="label">
+                                 <!--<posx>127</posx>-->
+                                 <posy>5</posy>
+                                 <width>30</width>
+                                 <height>26</height>
+                                 <align>center</align>
+                                 <aligny>top</aligny>
+                                 <font>font23b</font>
+                                 <textcolor>white</textcolor>
+                                 <label>12310</label>
+                                 <visible>IsEmpty(Listitem.property(custom:home-score)) + !IsEmpty(Listitem.property(custom:show-score))</visible>
+                              </control>
+                              <control type="label">
+                                 <!--<posx>127</posx>-->
+                                 <posy>5</posy>
+                                 <width>30</width>
+                                 <height>26</height>
+                                 <align>center</align>
+                                 <aligny>top</aligny>
+                                 <font>font23b</font>
+                                 <textcolor>white</textcolor>
+                                 <label>&#8211;</label>
+                                 <visible>IsEmpty(Listitem.property(custom:show-score))</visible>
+                              </control>
+                           </control>
+                           <control type="label">
+                              <posx>195</posx>
+                              <posy>-7</posy>
+                              <width>100</width>
+                              <height>50</height>
+                              <align>center</align>
+                              <aligny>center</aligny>
+                              <font>font16b</font>
+                              <textcolor>white</textcolor>
+                              <wrapmultiline>true</wrapmultiline>
+                              <info>ListItem.Property(custom:game-status)</info>
+                              <visible>IsEmpty(Listitem.property(custom:preview)) + !App.HasSetting(hide_scores)</visible>
+                           </control>
+                           <control type="label">
+                              <posx>193</posx>
+                              <posy>-7</posy>
+                              <width>100</width>
+                              <height>50</height>
+                              <align>center</align>
+                              <aligny>center</aligny>
+                              <font>font18</font>
+                              <textcolor>white</textcolor>
+                              <info>ListItem.Property(custom:event-time)</info>
+                              <visible>!IsEmpty(Listitem.property(custom:preview))</visible>
+                           </control>
+                        </control>
+                     </control>
+                  </itemlayout>
+                  <focusedlayout width="417" height="64">
+                     <control type="image">
+                        <width>417</width>
+                        <height>61</height>
+                        <texture>calendar/mlb-calendar-selected.png</texture>
+                        <visible>Control.HasFocus(4002)</visible>
+                     </control>
+                     <control type="image">
+                        <width>417</width>
+                        <height>64</height>
+                        <texture>calendar/mlb-calendar-popup-listitem.png</texture>
+                     </control>
+                     <control type="group">
+                        <posy>12</posy>
+                        <posx>10</posx>
+                        <control type="largeimage">
+                           <posy>5</posy>
+                           <width>30</width>
+                           <height>30</height>
+                           <aspectratio>keep</aspectratio>
+                           <texture>http://mlb.mlb.com/images/logos/200x200/200x200_$INFO[ListItem.Property(custom:away-name-abbrev)].png</texture>
+                        </control>
+                        <control type="label">
+                           <posx>33</posx>
+                           <posy>7</posy>
+                           <width>80</width>
+                           <height>30</height>
+                           <align>left</align>
+                           <aligny>top</aligny>
+                           <font>font21</font>
+                           <textcolor>white</textcolor>
+                           <label>[B]$INFO[ListItem.Property(custom:away-name-abbrev)][/B]</label>
+                        </control>
+                        <control type="image">
+                           <posx>82</posx>
+                           <posy>1</posy>
+                           <width>16</width>
+                           <height>16</height>
+                           <texture>mlb-star.png</texture>
+                           <aspectratio>keep</aspectratio>
+                           <visible>!IsEmpty(Listitem.property(custom:away-team-fav))</visible>
+                        </control>
+                        <control type="group">
+                           <visible>!App.HasSetting(hide_scores)</visible>
+                           <control type="label">
+                              <posx>127</posx>
+                              <posy>5</posy>
+                              <width>30</width>
+                              <height>26</height>
+                              <align>center</align>
+                              <aligny>top</aligny>
+                              <font>font23b</font>
+                              <textcolor>white</textcolor>
+                              <info>ListItem.Property(custom:away-score)</info>
+                              <visible>!IsEmpty(Listitem.property(custom:away-score)) + !IsEmpty(Listitem.property(custom:show-score))</visible>
+                           </control>
+                           <control type="label">
+                              <posx>127</posx>
+                              <posy>5</posy>
+                              <width>30</width>
+                              <height>26</height>
+                              <align>center</align>
+                              <aligny>top</aligny>
+                              <font>font23b</font>
+                              <textcolor>white</textcolor>
+                              <label>12310</label>
+                              <visible>IsEmpty(Listitem.property(custom:away-score)) + !IsEmpty(Listitem.property(custom:show-score))</visible>
+                           </control>
+                           <control type="label">
+                              <posx>127</posx>
+                              <posy>5</posy>
+                              <width>30</width>
+                              <height>26</height>
+                              <align>center</align>
+                              <aligny>top</aligny>
+                              <font>font23b</font>
+                              <textcolor>white</textcolor>
+                              <label>&#8211;</label>
+                              <visible>IsEmpty(Listitem.property(custom:show-score))</visible>
+                           </control>
+                        </control>
+                        <control type="group">
+                           <posx>167</posx>
+                           <control type="largeimage">
+                              <posy>5</posy>
+                              <width>30</width>
+                              <height>30</height>
+                              <aspectratio>keep</aspectratio>
+                              <texture>http://mlb.mlb.com/images/logos/200x200/200x200_$INFO[ListItem.Property(custom:home-name-abbrev)].png</texture>
+                           </control>
+                           <control type="label">
+                              <posx>33</posx>
+                              <posy>7</posy>
+                              <width>80</width>
+                              <height>30</height>
+                              <align>left</align>
+                              <aligny>top</aligny>
+                              <font>font21</font>
+                              <textcolor>white</textcolor>
+                              <label>[B]$INFO[ListItem.Property(custom:home-name-abbrev)][/B]</label>
+                           </control>
+                           <control type="image">
+                              <posx>82</posx>
+                              <posy>1</posy>
+                              <width>16</width>
+                              <height>16</height>
+                              <texture>mlb-star.png</texture>
+                              <aspectratio>keep</aspectratio>
+                              <visible>!IsEmpty(Listitem.property(custom:home-team-fav))</visible>
+                           </control>
+                           <control type="group">
+                              <posx>127</posx>
+                              <visible>!App.HasSetting(hide_scores)</visible>
+                              <control type="label">
+                                 <!--<posx>127</posx>-->
+                                 <posy>5</posy>
+                                 <width>30</width>
+                                 <height>26</height>
+                                 <align>center</align>
+                                 <aligny>top</aligny>
+                                 <font>font23b</font>
+                                 <textcolor>white</textcolor>
+                                 <info>ListItem.Property(custom:home-score)</info>
+                                 <visible>!IsEmpty(Listitem.property(custom:home-score)) + !IsEmpty(Listitem.property(custom:show-score))</visible>
+                              </control>
+                              <control type="label">
+                                 <!--<posx>127</posx>-->
+                                 <posy>5</posy>
+                                 <width>30</width>
+                                 <height>26</height>
+                                 <align>center</align>
+                                 <aligny>top</aligny>
+                                 <font>font23b</font>
+                                 <textcolor>white</textcolor>
+                                 <label>12310</label>
+                                 <visible>IsEmpty(Listitem.property(custom:home-score)) + !IsEmpty(Listitem.property(custom:show-score))</visible>
+                              </control>
+                              <control type="label">
+                                 <!--<posx>127</posx>-->
+                                 <posy>5</posy>
+                                 <width>30</width>
+                                 <height>26</height>
+                                 <align>center</align>
+                                 <aligny>top</aligny>
+                                 <font>font23b</font>
+                                 <textcolor>white</textcolor>
+                                 <label>&#8211;</label>
+                                 <visible>IsEmpty(Listitem.property(custom:show-score))</visible>
+                              </control>
+                           </control>
+                           <control type="label">
+                              <posx>195</posx>
+                              <posy>-7</posy>
+                              <width>100</width>
+                              <height>50</height>
+                              <align>center</align>
+                              <aligny>center</aligny>
+                              <font>font16b</font>
+                              <textcolor>white</textcolor>
+                              <wrapmultiline>true</wrapmultiline>
+                              <info>ListItem.Property(custom:game-status)</info>
+                              <visible>IsEmpty(Listitem.property(custom:preview)) + !App.HasSetting(hide_scores)</visible>
+                           </control>
+                           <control type="label">
+                              <posx>193</posx>
+                              <posy>-7</posy>
+                              <width>100</width>
+                              <height>50</height>
+                              <align>center</align>
+                              <aligny>center</aligny>
+                              <font>font18</font>
+                              <textcolor>white</textcolor>
+                              <info>ListItem.Property(custom:event-time)</info>
+                              <visible>!IsEmpty(Listitem.property(custom:preview))</visible>
+                           </control>
+                        </control>
+                     </control>
+                  </focusedlayout>
+                  <content type="url" url="">
+                   
+                  </content>
+               </control>
+               <control type="button" id="4003">
+                  <posy>373</posy>
+                  <posx>8</posx>
+                  <width>419</width>
+                  <height>34</height>
+                  <onup>4002</onup>
+                  <ondown>-</ondown>
+                  <onright>-</onright>
+                  <onleft>-</onleft>
+                  <label>Close</label>
+                  <font>font23b</font>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <texturefocus>mlb-selected.png</texturefocus>
+                  <texturenofocus>-</texturenofocus>
+                  
+               </control>
+            </control>
+         </control>
+      </control>
+      <control type="group" id="500">
+         <posy>14</posy>
+         <visible>false</visible>
+         <animation effect="zoom" end="100" center="auto" time="150" condition="Control.IsVisible(500)">Conditional</animation>
+         <animation effect="zoom" end="0" center="auto" time="150" condition="!Control.IsVisible(500)">Conditional</animation>
+         <control type="image">
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-play-dialog.png</texture>
+         </control>
+         <control type="group">
+            <posy>210</posy>
+            <posx>475</posx>
+            <control type='grouplist'>
+               <width>330</width>
+               <height>180</height>
+               <itemgap>5</itemgap>
+               <orientation>horizontal</orientation>
+               <control type="largeimage">
+                  <width>120</width>
+                  <height>120</height>
+                  <texture>http://mlb.mlb.com/images/logos/200x200/200x200_$INFO[Container(4002).Listitem.property(custom:away-name-abbrev)].png</texture>
+               </control>
+               <control type="label">
+                  <width>80</width>
+                  <height>120</height>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <font>sans48b</font>
+                  <textcolor>white</textcolor>
+                  <label>@</label>
+               </control>
+               <control type="largeimage">
+                  <width>120</width>
+                  <height>120</height>
+                  <texture>http://mlb.mlb.com/images/logos/200x200/200x200_$INFO[Container(4002).Listitem.property(custom:home-name-abbrev)].png</texture>
+               </control>
+            </control>
+            <control type='grouplist'>
+               <posx>-10</posx>
+               <posy>125</posy>
+               <width>370</width>
+               <height>180</height>
+               <itemgap>5</itemgap>
+               <orientation>horizontal</orientation>
+               <control type="label">
+                  <width>140</width>
+                  <height>30</height>
+                  <align>center</align>
+                  <font>title24b</font>
+                  <textcolor>white</textcolor>
+                  <label>$INFO[Container(4002).Listitem.property(custom:away-team-name)]</label>
+               </control>
+               <control type="label">
+                  <width>60</width>
+                  <height>800</height>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <font>sans48b</font>
+                  <textcolor>white</textcolor>
+                  <label></label>
+               </control>
+               <control type="label">
+                  <width>140</width>
+                  <height>30</height>
+                  <align>center</align>
+                  <font>title24b</font>
+                  <textcolor>white</textcolor>
+                  <label>$INFO[Container(4002).Listitem.property(custom:home-team-name)]</label>
+               </control>
+            </control>
+            <control type="label">
+               <posy>192</posy>
+               <width>330</width>
+               <height></height>
+               <align>center</align>
+               <aligny>center</aligny>
+               <font>title30b</font>
+               <textcolor>white</textcolor>
+               <label>$INFO[Container(4002).Listitem.property(custom:game-status)]</label>
+               <visible>!App.HasSetting(hide_scores)</visible>
+            </control>
+         </control>
+         <control type="list" id="501">
+            <posx>432</posx>
+            <posy>430</posy>
+            <width>647</width>
+            <height>135</height>
+            <pagecontrol></pagecontrol>
+            <scrolltime>200</scrolltime>
+            <preloaditems>2</preloaditems>
+            <orientation>vertical</orientation>
+            <itemlayout width="415" height="65">
+               <control type="image">
+                  <width>415</width>
+                  <height>65</height>
+                  <texture>mlb-play-dialog-item.png</texture>
+               </control>
+               <control type="label">
+                  <posx>207</posx>
+                  <width>415</width>
+                  <height>65</height>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <font>font23b</font>
+                  <textcolor>white</textcolor>
+                  <label>$INFO[Listitem.Label]</label>
+               </control>
+            </itemlayout>
+            <focusedlayout width="415" height="65">
+               <control type="image">
+                  <width>415</width>
+                  <height>65</height>
+                  <texture>mlb-play-dialog-item-on.png</texture>
+               </control>
+               <control type="label">
+                  <posx>207</posx>
+                  <width>415</width>
+                  <height>65</height>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <font>font23b</font>
+                  <textcolor>white</textcolor>
+                  <label>$INFO[Listitem.Label]</label>
+               </control>
+            </focusedlayout>
+            <content type="action">
+               
+            </content>
+         </control>
+      </control>
+      <!--<control type="multiimage">-->
+      <!--   <posx>540</posx>-->
+      <!--   <posy>348</posy>-->
+      <!--   <width>200</width>-->
+      <!--   <height>24</height>-->
+      <!--   <imagepath>loading</imagepath>-->
+      <!--   <timeperimage>12</timeperimage>-->
+      <!--   <fadetime>4</fadetime>-->
+      <!--   <pauseatend>0</pauseatend>-->
+      <!--   <randomize>false</randomize>-->
+      <!--   <loop>yes</loop>-->
+      <!--   <aspectratio>keep</aspectratio>-->
+      <!--   <colordiffuse>title</colordiffuse>-->
+      <!--   <visible>Container(4002).IsLoading | Container(121).IsLoading</visible>-->
+      <!--</control>-->
+   </controls>
+</window>
