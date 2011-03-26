@@ -1,6 +1,7 @@
 import os, sys, stat, re
 import xbmc, xbmcgui, xbmcaddon
 import urllib2, binascii, urllib
+from BeautifulSoup import BeautifulStoneSoup
 try:
     import cPickle as pickle
 except:
@@ -288,6 +289,102 @@ class Listmc(object):
             'tagline':'tagline','writer':'writer','tvshowtitle':'tvshowtitle','premiered':'premiered','status':'status','code':'code','aired':'aired','credits':'credits','lastplayed':'lastplayed','album':'album','votes':'votes','trailer':'trailer',
             'artist':'artist','lyrics':'lyrics', 'picturepath':'picturepath', 'exif':'exif'}
 
+    def SetContentURL(url):
+        req = urllib2.Request(url)
+        response = urllib2.urlopen(req)
+        link=response.read()
+        response.close()
+        soup = BeautifulStoneSoup(link, convertEntities=BeautifulStoneSoup.XML_ENTITIES)
+        channel = soup.channel.title.string
+        channel_link = soup.channel.link.string
+        channel_description = soup.channel.description.string
+        try:
+            channel_image = soup.channel.image.string
+        except:
+            channel_image = ''
+        try:
+            channel_language = soup.channel.language.string
+        except:
+            channel_language = ''
+        try:
+            channel_expiry = soup.channel('boxee:expiry')[0].string
+        except:
+            channel_expiry = ''
+        items = soup('item')
+        for item in items:
+            try:
+                title = item.title.string
+            except:
+                title = ''
+            try:
+                link = item.link.string
+            except:
+                link = ''
+            try:
+                guid = item.guid.string
+            except:
+                guid = ''
+            try:
+                description = item.description.string
+            except:
+                description = ''
+            try:
+                custom_display = item('boxee:property',attrs={'name' : "custom:display"})[0].string
+            except:
+                custom_display = ''
+            try:
+                custom_myteam = item('boxee:property', attrs={'name' : "custom:myteam"})[0].string
+            except:
+                custom_myteam = ''
+            try:
+                thumbnail = item('media:thumbnail')[0]['url']
+            except:
+                thumbnail = ''
+            try:
+                genre = item('media:category', attrs={'scheme' : 'urn:boxee:genre'})[0].string
+            except:
+                genre = ''
+            try:
+                boxee_type = item('boxee:media-type')[0]['type']
+            except:
+                boxee_type = ''
+            try:
+                release_date = item('boxee:release-date')[0].string
+            except:
+                release_date = ''
+            try:
+                episode = item('media:category', attrs={'scheme' : "urn:boxee:episode"})[0].string
+            except:
+                episode = ''
+            try:
+                season = item('media:category', attrs={'scheme' : "urn:boxee:season"})[0].string
+            except:
+                season = ''
+            try:
+                media_url = item('media:content')[0]['url']
+            except:
+                media_url = ''
+            try:
+                media_duration = item('media:content')[0]['duration']
+            except:
+                media_duration = ''
+            try:
+                media_type = item('media:content')[0]['type']
+            except:
+                media_type = ''
+            try:
+                media_height = item('media:content')[0]['height']
+            except:
+                media_height = ''
+            try:
+                media_width = item('media:content')[0]['width']
+            except:
+                media_width = ''
+            try:
+                media_lang = item('media:content')[0]['lang']
+            except:
+                media_lang = ''
+		
     def GetFocusedItem(self):
         return self.list.getSelectedPosition()
 
